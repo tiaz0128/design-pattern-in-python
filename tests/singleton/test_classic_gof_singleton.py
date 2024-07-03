@@ -1,4 +1,4 @@
-from singleton.classic_gof.singleton import Singleton
+from singleton.gof.singleton import Singleton
 
 
 def test_classic_gof_singleton():

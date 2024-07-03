@@ -1,4 +1,4 @@
-# Class level Singleton
+# \_\_new\_\_ Singleton
 
 ```mermaid
 classDiagram
