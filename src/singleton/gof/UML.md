@@ -10,6 +10,4 @@ classDiagram
         -__new__()
         +get_instance() Singleton
     }
-
-    Singleton --> Singleton : create
 ```
