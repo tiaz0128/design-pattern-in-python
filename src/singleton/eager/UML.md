@@ -1,12 +1,14 @@
-# Meta Singleton
+# Eager Singleton
 
 ```mermaid
 classDiagram
     direction BT
 
     class SingletonMeta{
-        _instances : dict[SingletonMeta]
-        +__call__(cls) Singleton
+        -_instances: dict
+
+        -__init__()
+        -__call__()
     }
 
     Singleton --|> SingletonMeta

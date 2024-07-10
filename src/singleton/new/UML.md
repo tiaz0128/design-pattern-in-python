@@ -5,10 +5,8 @@ classDiagram
     direction BT
 
     class Singleton{
-        -_instance: Singleton = None
+        -_instance: Singleton
 
         +__new__() Singleton
     }
-
-    Singleton --> Singleton : create
 ```

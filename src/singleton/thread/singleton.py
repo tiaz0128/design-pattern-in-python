@@ -1,4 +1,4 @@
-from singleton.meta.meta import SingletonMeta
+from singleton.thread.meta import SingletonMeta
 
 
 class Singleton(metaclass=SingletonMeta):
