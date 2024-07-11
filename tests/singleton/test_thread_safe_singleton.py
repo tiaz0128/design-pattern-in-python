@@ -1,6 +1,5 @@
 import logging
 import threading
-import time
 
 from singleton.meta.singleton import Singleton as LazySingleton
 from singleton.thread.singleton import Singleton as ThreadSafeSingleton
