@@ -19,11 +19,11 @@ def test_lazy_singleton():
 
 def race_condition(func):
     threads = []
-    results = [None] * 100  # 결과를 저장할 리스트를 생성합니다.
-    barrier = threading.Barrier(100)
+    results = [None] * 100  # 결과 저장 리스트
+    barrier = threading.Barrier(100)  # 100개의 쓰레드가 동시에 실행되도록 설정
 
     def wrapper(index):
-        barrier.wait()
+        barrier.wait()  # 모든 쓰레드가 이 지점에 도달할 때까지 대기
         results[index] = func()
 
     for i in range(100):
@@ -36,7 +36,7 @@ def race_condition(func):
     for t in threads:
         t.join()
 
-    return results  # 결과 리스트를 반환합니다.
+    return results  # 결과 리스트를 반환
 
 
 def get_thread_singleton_instance():
