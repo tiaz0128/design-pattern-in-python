@@ -1,9 +1,9 @@
-from enum import Enum
+from enum import StrEnum
 
-from pizza import CheesePizza, ClamPizza
+from factory.simple_factory.pizza import CheesePizza, ClamPizza
 
 
-class PizzaType(Enum):
+class PizzaType(StrEnum):
     CHEESE_PIZZA = "cheese pizza"
     CLAM_PIZZA = "clam pizza"
 

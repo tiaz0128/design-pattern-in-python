@@ -4,7 +4,7 @@ classDiagram
 
     class PizzaStore {
         -SimplePizzaFactory factory
-        +orderPizza() Pizza
+        +order() Pizza
     }
 
     class SimplePizzaFactory {
@@ -15,21 +15,17 @@ classDiagram
 
     class Pizza {
         <<abstract>>
-
-        +prepare()
-        +bake()
-        +cut()
-        +box()
+        str name
     }
 
     SimplePizzaFactory --* Pizza
 
     class CheesePizza {
-
+        str name
     }
 
     class ClamPizza {
-
+        str name
     }
 
     CheesePizza --|> Pizza  

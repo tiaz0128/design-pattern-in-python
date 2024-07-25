@@ -1,17 +1,15 @@
-from pizza import Pizza
-from simple_factory import SimplePizzaFactory
+import logging
+from factory.simple_factory.pizza import Pizza
+from factory.simple_factory.simple_factory import PizzaType, SimplePizzaFactory
 
 
 class PizzaStore:
     def __init__(self) -> None:
         self.factory = SimplePizzaFactory()
 
-    def order_pizza(self, pizza_type) -> Pizza:
+    def order(self, pizza_type: PizzaType) -> Pizza:
         pizza = self.factory.create_pizza(pizza_type)
 
-        pizza.prepare()
-        pizza.bake()
-        pizza.cut()
-        pizza.box()
+        logging.info(f"{pizza.name}를 주문하셨습니다.")
 
         return pizza
