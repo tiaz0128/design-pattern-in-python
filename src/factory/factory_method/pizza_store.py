@@ -1,37 +1,16 @@
-from abc import ABC, abstractmethod
+import logging
 
-from factory.factory_method.pizza import (
-    ChicagoStyleCheesePizza,
-    NYStyleCheesePizza,
-    PizzaType,
-)
+from factory.factory_method.method_factory import MethodFactory
+from factory.factory_method.pizza import Pizza, PizzaType
 
 
-class PizzaStore(ABC):
-    def order(self, pizza_type):
-        pizza = self.create_pizza(pizza_type)
+class PizzaStore:
+    def __init__(self, factory: MethodFactory) -> None:
+        self.factory = factory
+
+    def order(self, pizza_type: PizzaType) -> Pizza:
+        pizza = self.factory.create_pizza(pizza_type)
+
+        logging.info(f"{pizza.name}를 주문하셨습니다.")
 
         return pizza
-
-    @abstractmethod
-    def create_pizza(self, pizza_type):
-        pass
-
-
-class NYPizzaStore(PizzaStore):
-    def create_pizza(self, pizza_type):
-        match pizza_type:
-            case PizzaType.CHEESE:
-                return NYStyleCheesePizza()
-
-
-class ChicagoPizzaStore(PizzaStore):
-    def create_pizza(self, pizza_type):
-        self.cut()
-
-        match pizza_type:
-            case PizzaType.CHEESE:
-                return ChicagoStyleCheesePizza()
-
-    def cut(self):
-        print("네모로 짜름")

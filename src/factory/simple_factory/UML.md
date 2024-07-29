@@ -30,5 +30,4 @@ classDiagram
 
     CheesePizza --|> Pizza  
     ClamPizza --|> Pizza  
-
 ```
