@@ -1,14 +1,15 @@
 from abc import ABC, abstractmethod
-from pizza import ChicagoStyleCheesePizza, NYStyleCheesePizza, PizzaType
+
+from factory.factory_method.pizza import (
+    ChicagoStyleCheesePizza,
+    NYStyleCheesePizza,
+    PizzaType,
+)
 
 
 class PizzaStore(ABC):
-    def order_pizza(self, pizza_type):
+    def order(self, pizza_type):
         pizza = self.create_pizza(pizza_type)
-
-        pizza.bake()
-        pizza.cut()
-        pizza.box()
 
         return pizza
 
@@ -26,6 +27,8 @@ class NYPizzaStore(PizzaStore):
 
 class ChicagoPizzaStore(PizzaStore):
     def create_pizza(self, pizza_type):
+        self.cut()
+
         match pizza_type:
             case PizzaType.CHEESE:
                 return ChicagoStyleCheesePizza()
