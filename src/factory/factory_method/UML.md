@@ -6,7 +6,7 @@ direction TB
         +order() Pizza
     }
 
-    PizzaStore --o MethodFactory
+    PizzaStore o-- MethodFactory
 
     class MethodFactory {
         <<interface>>
@@ -22,8 +22,8 @@ direction TB
         +cut_rectangle()
     }
 
-    MethodFactory <|-- NYPizzaFactory
-    MethodFactory <|-- ChicagoPizzaFactory
+    MethodFactory <|.. NYPizzaFactory
+    MethodFactory <|.. ChicagoPizzaFactory
 
     class Pizza {
         <<abstract>>
@@ -38,9 +38,9 @@ direction TB
         str name
     }
 
-    NYStyleCheesePizza ..|> Pizza
-    ChicagoStyleCheesePizza ..|> Pizza
+    NYStyleCheesePizza --|> Pizza
+    ChicagoStyleCheesePizza --|> Pizza
 
-    NYPizzaFactory --* NYStyleCheesePizza
-    ChicagoPizzaFactory --* ChicagoStyleCheesePizza
+    NYPizzaFactory *-- NYStyleCheesePizza
+    ChicagoPizzaFactory *-- ChicagoStyleCheesePizza
 ```
