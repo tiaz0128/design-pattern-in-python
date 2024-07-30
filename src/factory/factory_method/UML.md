@@ -38,8 +38,8 @@ direction TB
         str name
     }
 
-    NYStyleCheesePizza --|> Pizza
-    ChicagoStyleCheesePizza --|> Pizza
+    NYStyleCheesePizza ..|> Pizza
+    ChicagoStyleCheesePizza ..|> Pizza
 
     NYPizzaFactory --* NYStyleCheesePizza
     ChicagoPizzaFactory --* ChicagoStyleCheesePizza

@@ -1,7 +1,8 @@
+from abc import ABC
 from enum import StrEnum
 
 
-class Pizza:
+class Pizza(ABC):
     name = "피자"
 
 
@@ -15,4 +16,3 @@ class ChicagoStyleCheesePizza(Pizza):
 
 class PizzaType(StrEnum):
     CHEESE = "cheese"
-    CLAM = "clam"
