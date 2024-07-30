@@ -9,7 +9,7 @@ class PizzaStore:
         self.factory = factory
 
     def order(self, pizza_type: PizzaType) -> Pizza:
-        pizza = self.factory.create_pizza(pizza_type)
+        pizza = self.factory.make_pizza(pizza_type)
 
         logging.info(f"{pizza.name}를 주문하셨습니다.")
 

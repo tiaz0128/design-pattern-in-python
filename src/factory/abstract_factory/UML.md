@@ -1,46 +1,13 @@
 ```mermaid 
 classDiagram
-    direction BT
-
-    class PizzaIngredientFactory {
-        <<interface>>
-
-        createDough()*
-        createSauce()*
-        createCheese()*
-        createVeggies()*
-        createPepperoni()*
-        createClam()*
-    }
-
-    class NYPizzaIngredientFactory {
-        createDough()
-        createSauce()
-        createCheese()
-        createVeggies()
-        createPepperoni()
-        createClam()
-    }
-    
-
-    class ChicagoPizzaIngredientFactory {
-        createDough()
-        createSauce()
-        createCheese()
-        createVeggies()
-        createPepperoni()
-        createClam()
-    }
-
-    NYPizzaIngredientFactory --|> PizzaIngredientFactory
-    ChicagoPizzaIngredientFactory --|> PizzaIngredientFactory
+    direction RL
 
     class Dough {
-        <<interface>>
+        <<abstract>>
     }
 
     class Cheese {
-        <<interface>>
+        <<abstract>>
     }
 
     class ThinCrustDough {
@@ -53,6 +20,23 @@ classDiagram
 
     ThinCrustDough --|> Dough
     ThickCrustDough --|> Dough
+
+    class PizzaFactory {
+        <<interface>>
+        +makeDough() Dough*
+        +makeCheese() Cheese*
+    }
+
+    class NYPizzaFactory {
+        +makeDough() Dough
+        +makeCheese() Cheese
+    }
+    
+
+    class ChicagoPizzaFactory {
+        +makeDough() Dough
+        +makeCheese() Cheese
+    }
     
     class ReggianoCheese {
     }
@@ -64,8 +48,12 @@ classDiagram
     ReggianoCheese --|> Cheese
     MozzarellaCheese --|> Cheese
 
-    NYPizzaIngredientFactory --> ReggianoCheese
-    NYPizzaIngredientFactory --> ThinCrustDough
-    
-    
+    NYPizzaFactory *-- ReggianoCheese
+    NYPizzaFactory *-- ThinCrustDough
+
+    ChicagoPizzaFactory *-- MozzarellaCheese
+    ChicagoPizzaFactory *-- ThickCrustDough
+
+    PizzaFactory <|.. NYPizzaFactory
+    PizzaFactory <|.. ChicagoPizzaFactory
 ```

@@ -9,8 +9,8 @@ direction TB
     PizzaStore --o MethodFactory
 
     class MethodFactory {
-        <<abstract>>
-        +createPizza(type) Pizza
+        <<interface>>
+        +createPizza(type) Pizza*
     }
     
     class NYPizzaFactory {

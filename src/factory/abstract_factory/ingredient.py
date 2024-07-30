@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import override
 
 
 class Dough(ABC):
@@ -8,11 +9,13 @@ class Dough(ABC):
 
 
 class ThinCrustDough(Dough):
+    @override
     def __str__(self) -> str:
         return "ThinCrustDough"
 
 
 class ThickCrustDough(Dough):
+    @override
     def __str__(self) -> str:
         return "ThickCrustDough"
 

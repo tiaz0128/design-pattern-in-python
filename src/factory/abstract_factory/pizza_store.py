@@ -1,42 +1,16 @@
-from abc import ABC, abstractmethod
-
-from pizza_ingredient_factory import (
-    NYPizzaIngredientFactory,
-    ChicagoPizzaIngredientFactory,
-)
-from pizza import CheesePizza, PizzaType
+from factory.abstract_factory.abstract_factory import AbstractFactory
 
 
-class PizzaStore(ABC):
-    def order_pizza(self, pizza_type):
-        pizza = self.create_pizza(pizza_type)
+class PizzaStore:
+    def __init__(self, factory: AbstractFactory):
+        self.factory = factory
 
-        pizza.bake()
-        pizza.cut()
-        pizza.box()
+    def order(self):
+        cheese = self.factory.make_cheese()
+        dough = self.factory.make_dough()
 
-        return pizza
+        return self.make_pizza(cheese, dough)
 
-    @abstractmethod
-    def create_pizza(self, pizza_type):
-        pass
-
-
-class NYPizzaStore(PizzaStore):
-    def create_pizza(self, pizza_type):
-        ingredient_factory = NYPizzaIngredientFactory()
-
-        match pizza_type:
-            case PizzaType.CHEESE:
-                pizza = CheesePizza(ingredient_factory)
-                return pizza
-
-
-class ChicagoPizzaStore(PizzaStore):
-    def create_pizza(self, pizza_type):
-        ingredient_factory = ChicagoPizzaIngredientFactory()
-
-        match pizza_type:
-            case PizzaType.CHEESE:
-                pizza = CheesePizza(ingredient_factory)
-                return pizza
+    def make_pizza(self, cheese, dough):
+        print(f"{self.factory.name}에서 받은")
+        print(f"{cheese} 치즈와 {dough} 도우를 사용하여 피자를 만듭니다.")
