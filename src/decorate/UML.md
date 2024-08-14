@@ -1,6 +1,6 @@
 ```mermaid 
 classDiagram
-    direction BT
+    direction LR
 
     class Beverage {
         <<abstract>>           
@@ -20,8 +20,10 @@ classDiagram
         cost() float
     }
 
-    Espresso --|> Beverage
-    HouseBlend --|> Beverage
+    CondimentDecorator *-- Beverage
+
+    Beverage <|-- Espresso
+    Beverage <|-- HouseBlend
 
 
     class CondimentDecorator {
@@ -29,10 +31,10 @@ classDiagram
 
         Beverage beverage
         getDescription()* str
+        cost()* float
     }
 
-    CondimentDecorator --|> Beverage
-    CondimentDecorator --* Beverage
+    
 
     class Mocha {
         getDescription() str

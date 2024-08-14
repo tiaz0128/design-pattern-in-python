@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 
 class Beverage(ABC):
     def __init__(self) -> None:
-        super().__init__()
         self.description = ""
 
     def get_description(self):
@@ -33,7 +32,7 @@ class HouseBlend(Beverage):
 
 
 class CondimentDecorator(Beverage):
-    def __init__(self, beverage: Beverage) -> None:
+    def __init__(self, beverage: Beverage = None) -> None:
         super().__init__()
         self.beverage = beverage
 
@@ -41,18 +40,34 @@ class CondimentDecorator(Beverage):
     def get_description(self):
         pass
 
+    @abstractmethod
+    def cost(self):
+        pass
+
 
 class Mocha(CondimentDecorator):
     def get_description(self):
+        if self.beverage is None:
+            return ["Mocha"]
+
         return self.beverage.get_description() + ["Mocha"]
 
     def cost(self):
+        if self.beverage is None:
+            return 0.2
+
         return self.beverage.cost() + 0.2
 
 
 class Soy(CondimentDecorator):
     def get_description(self):
+        if self.beverage is None:
+            return ["Soy"]
+
         return self.beverage.get_description() + ["Soy"]
 
     def cost(self):
+        if self.beverage is None:
+            return 0.2
+
         return self.beverage.cost() + 0.2
