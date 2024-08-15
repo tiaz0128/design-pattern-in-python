@@ -1,14 +1,13 @@
-import pytest
-from collections import Counter
-
-from decorate.beverage import Beverage, Espresso, HouseBlend, Mocha, Soy
+from decorate.decorate.beverage import Beverage
+from decorate.decorate.coffee import Coffee
+from decorate.decorate.ingredient import Mocha, Milk
 
 
 def test_decorate():
-    beverage: Beverage = Espresso()
+    beverage: Beverage = Coffee()
 
     a = Mocha(beverage)
     b = Mocha(a)
-    c = Soy(b)
+    c = Milk(b)
 
-    print(f"name: {Counter(c.get_description())} cost: ${c.cost()}")
+    print(f"{c.recipe()} / cost: {c.cost()}")
