@@ -15,6 +15,7 @@ class Logger(ABC):
 
     def set_next(self, next_logger):
         self.next = next_logger
+        return next_logger
 
     def log(self, level, message):
         if level.value >= self.level.value:
@@ -47,7 +48,6 @@ def setup_chain():
     file = FileLogger(LogLevel.DEBUG)
     email = EmailLogger(LogLevel.ERROR)
 
-    console.set_next(file)
-    file.set_next(email)
+    console.set_next(file).set_next(email)
 
     return console

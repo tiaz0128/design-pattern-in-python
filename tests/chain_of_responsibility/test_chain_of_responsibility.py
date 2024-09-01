@@ -4,7 +4,10 @@ from chain_of_responsibility.report import ApprovalLevel, Report, setup_approval
 
 
 def test_coin():
-    calculate_change(1680)
+    from random import randint
+
+    amount = randint(10, 3000)
+    calculate_change(amount // 10 * 10)
 
 
 def test_logger():
