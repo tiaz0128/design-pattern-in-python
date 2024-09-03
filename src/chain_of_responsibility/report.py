@@ -79,9 +79,8 @@ class President(Approver):
 
     def approve(self, report):
         is_approved = choice([True, False])
-        is_final_approval = report.required_approval_level == self.level
 
-        title, approve_msg = self.get_title(is_approved, is_final_approval)
+        title, approve_msg = self.get_title(is_approved, True)
         print(f'{title} : 사장이 ~{report.content}~ 보고서를 "{approve_msg}"했습니다')
 
         return is_approved
@@ -92,6 +91,6 @@ def setup_approval_chain():
     vice_president = VicePresident()
     president = President()
 
-    team_lead.set_next(vice_president).set_next(president)
+    team_lead.set_next(president)  # .set_next(president)
 
     return team_lead
